@@ -1,4 +1,8 @@
 const gridContainer = document.querySelector(".grid-container");
+const tabs = document.querySelectorAll('.menu__tab');
+const gameWindow = document.querySelector('.game'),
+      menuWindow = document.querySelector('.menu');
+
 let cards = [];
 let firstCard, secondCard;
 let lockBoard = false;
@@ -6,13 +10,19 @@ let score = 0;
 
 document.querySelector(".score").textContent = score;
 
-fetch("./database/cards.json")
-    .then((res) => res.json())
-    .then((database) => {
-        cards = [...database, ...database];
-        shuffleCards();
-        generatecards();
-    });
+function getData(n) {
+    fetch("./database/cards.json")
+        .then((res) => res.json())
+        .then((database) => {
+
+            for (let i = 0; i <= n; i++) {
+                cards.push(...database)
+            }
+            // cards = [...database, ...database];
+            shuffleCards();
+            generatecards();
+        });
+}
 
 function shuffleCards() {
     let currentIndex = cards.length,
@@ -96,3 +106,21 @@ function restart() {
     gridContainer.innerHTML = "";
     generatecards();
 }
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        if (tab == tabs[0]) {
+            getData(1);
+            menuWindow.style.display = 'none';
+            gameWindow.style.display = 'block';
+        } else if (tab == tabs[1]) {
+            getData(2);
+            menuWindow.style.display = 'none';
+            gameWindow.style.display = 'block';
+        } else {
+            getData(3);
+            menuWindow.style.display = 'none';
+            gameWindow.style.display = 'block';
+        }
+    });
+});

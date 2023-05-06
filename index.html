@@ -11,12 +11,26 @@
     <link rel="stylesheet" type="text/css" href="./styles/syle.css" />
   </head>
   <body>
-    <h1>Find 2 cards game</h1>
-    <div class="grid-container"></div>
-    <p>Score: <span class="score"></span></p>
-    <div class="actions">
-      <button onclick="restart()">Restart</button>
-    </div>
+    <main>
+        <section class="menu">
+            <h2 class="menu__title">Choose the difficulty of the game</h2>
+            <ul class="menu__list">
+                <li class="menu__tab">Easy</li>
+                <li class="menu__tab">Middle</li>
+                <li class="menu__tab">Hard</li>
+            </ul>
+        </section>
+        <section class="game">
+            <div class="container">
+                <h1>Find 2 cards game</h1>
+                <div class="grid-container"></div>
+                <p>Score: <span class="score"></span></p>
+                <div class="actions">
+                    <button onclick="restart()">Restart</button>
+                </div>
+            </div>
+        </section>
+    </main>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
