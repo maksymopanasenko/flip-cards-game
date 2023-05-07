@@ -16,9 +16,9 @@ function getData(n) {
         .then((database) => {
 
             for (let i = 0; i <= n; i++) {
-                cards.push(...database)
+                cards.push(...database);
             }
-            // cards = [...database, ...database];
+
             shuffleCards();
             generatecards();
         });
@@ -107,20 +107,28 @@ function restart() {
     generatecards();
 }
 
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        if (tab == tabs[0]) {
-            getData(1);
-            menuWindow.style.display = 'none';
-            gameWindow.style.display = 'block';
-        } else if (tab == tabs[1]) {
-            getData(2);
-            menuWindow.style.display = 'none';
-            gameWindow.style.display = 'block';
-        } else {
-            getData(3);
-            menuWindow.style.display = 'none';
-            gameWindow.style.display = 'block';
-        }
+function manageTabs() {
+    const grid = document.querySelector('.grid-container');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            if (tab == tabs[0]) {
+                getData(1);
+                menuWindow.style.display = 'none';
+                gameWindow.style.display = 'block';
+            } else if (tab == tabs[1]) {
+                grid.classList.add('grid-container_large');
+                getData(3);
+                menuWindow.style.display = 'none';
+                gameWindow.style.display = 'block';
+            } else {
+                grid.classList.add('grid-container_large');
+                getData(5);
+                menuWindow.style.display = 'none';
+                gameWindow.style.display = 'block';
+            }
+        });
     });
-});
+}
+
+manageTabs();
