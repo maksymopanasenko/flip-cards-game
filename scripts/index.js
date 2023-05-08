@@ -115,17 +115,17 @@ function manageTabs() {
             if (tab == tabs[0]) {
                 getData(1);
                 menuWindow.style.display = 'none';
-                gameWindow.style.display = 'block';
+                gameWindow.style.display = 'flex';
             } else if (tab == tabs[1]) {
                 grid.classList.add('grid-container_large');
                 getData(3);
                 menuWindow.style.display = 'none';
-                gameWindow.style.display = 'block';
+                gameWindow.style.display = 'flex';
             } else {
                 grid.classList.add('grid-container_large');
                 getData(5);
                 menuWindow.style.display = 'none';
-                gameWindow.style.display = 'block';
+                gameWindow.style.display = 'flex';
             }
         });
     });
