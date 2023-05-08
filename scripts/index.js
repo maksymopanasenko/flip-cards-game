@@ -20,7 +20,7 @@ function getData(n) {
             }
 
             shuffleCards();
-            generatecards();
+            generateCards();
         });
 }
 
@@ -37,7 +37,7 @@ function shuffleCards() {
     }
 }
 
-function generatecards() {
+function generateCards() {
     for (let card of cards) {
         const cardElement = document.createElement("div");
         cardElement.classList.add("card");
@@ -70,6 +70,7 @@ function flipCard() {
     lockBoard = true;
 
     checkForMatch();
+    openModal();
 }
 
 function checkForMatch() {
@@ -104,10 +105,10 @@ function restart() {
     score = 0;
     document.querySelector(".score").textContent = score;
     gridContainer.innerHTML = "";
-    generatecards();
+    generateCards();
 }
 
-function manageTabs() {
+function setBoardSize() {
     const grid = document.querySelector('.grid-container');
 
     tabs.forEach(tab => {
@@ -131,4 +132,30 @@ function manageTabs() {
     });
 }
 
-manageTabs();
+setBoardSize();
+
+function openModal() {
+    const renderedCards = document.querySelectorAll('.card');
+    let counter = 0;
+
+    for (let i of renderedCards) {
+        if (i.classList.contains('flipped')) {
+            counter++;
+        }
+    }
+
+    if (counter == cards.length) {
+        setTimeout(showModal, 1000);
+    }
+}
+
+function showModal() {
+    const modal = document.querySelector('.modal');
+    modal.style.display = 'flex';
+    closeModal(modal);
+}
+
+function closeModal(elem) {
+    const closeBtn = document.querySelector('.modal__btn');
+    closeBtn.addEventListener('click', () => elem.style.display = 'none');
+}

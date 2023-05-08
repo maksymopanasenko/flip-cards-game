@@ -139,3 +139,41 @@ p {
 .card .front {
     transform: rotateY(180deg);
 }
+
+.modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #000000c8;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    text-align: center;
+}
+
+.modal__content {
+    background: #1b225fd5;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.modal__score {
+    text-decoration: underline;
+}
+
+.modal__btn {
+    background: #00970d;
+    padding: 10px 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: .3s all;
+    font-weight: 700;
+}
+
+.modal__btn:hover {
+    background: #04ee00;
+    color: rgb(33, 33, 30);
+}
