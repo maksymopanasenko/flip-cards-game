@@ -147,6 +147,8 @@ function openModal() {
     if (counter == cards.length) {
         setTimeout(showModal, 1000);
     }
+
+    openMenu();
 }
 
 function showModal() {
@@ -156,6 +158,16 @@ function showModal() {
 }
 
 function closeModal(elem) {
-    const closeBtn = document.querySelector('.modal__btn');
-    closeBtn.addEventListener('click', () => elem.style.display = 'none');
+    const closeBtns = document.querySelectorAll('.modal__btn');
+    closeBtns.forEach(btn => btn.addEventListener('click', () => elem.style.display = 'none'));
+}
+
+function openMenu() {
+    const backBtn = document.querySelector('.to-menu');
+    backBtn.addEventListener('click', () => {
+        menuWindow.style.display = 'block';
+        gameWindow.style.display = 'none';
+        cards = [];
+        gridContainer.innerHTML = '';
+    });
 }

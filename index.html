@@ -28,9 +28,6 @@
             <div class="game__aside">
               <p class="game__indicator">Score: <span class="score"></span></p>
               <p class="game__indicator">Time: <span class="score">01:30</span></p>
-              <div class="actions">
-                  <button onclick="restart()">Restart</button>
-              </div>
             </div>
         </section>
         <aside class="aside">
@@ -40,7 +37,10 @@
           <div class="modal__content">
             <h2>Congratulations!</h2>
             <p>You have scored <span class="modal__score">32</span> points</p>
-            <button class="modal__btn">Ok</button>
+            <div class="actions">
+              <button onclick="restart()" class="modal__btn">Restart</button>
+              <button class="modal__btn to-menu">Difficulty</button>
+          </div>
           </div>
         </div>
     </main>
