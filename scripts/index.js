@@ -1,5 +1,6 @@
 const gridContainer = document.querySelector(".grid-container");
 const tabs = document.querySelectorAll('.menu__tab');
+const modal = document.querySelector('.modal');
 const gameWindow = document.querySelector('.game'),
       menuWindow = document.querySelector('.menu');
 
@@ -147,27 +148,28 @@ function openModal() {
     if (counter == cards.length) {
         setTimeout(showModal, 1000);
     }
-
-    openMenu();
 }
 
 function showModal() {
-    const modal = document.querySelector('.modal');
     modal.style.display = 'flex';
-    closeModal(modal);
 }
 
-function closeModal(elem) {
-    const closeBtns = document.querySelectorAll('.modal__btn');
-    closeBtns.forEach(btn => btn.addEventListener('click', () => elem.style.display = 'none'));
-}
-
-function openMenu() {
-    const backBtn = document.querySelector('.to-menu');
-    backBtn.addEventListener('click', () => {
+function hideModal(btn) {
+    if (btn.classList.contains('to-menu')) {
         menuWindow.style.display = 'block';
         gameWindow.style.display = 'none';
         cards = [];
+        score = 0;
+        document.querySelector(".score").textContent = score;
         gridContainer.innerHTML = '';
-    });
+    }
+    modal.style.display = 'none';
 }
+
+const closeBtns = document.querySelectorAll('.modal__btn');
+
+closeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        hideModal(btn);
+    });
+});
