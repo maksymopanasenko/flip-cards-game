@@ -146,6 +146,7 @@ function openModal() {
     }
 
     if (counter == cards.length) {
+        updateScore();
         setTimeout(showModal, 1000);
     }
 }
@@ -173,3 +174,10 @@ closeBtns.forEach(btn => {
         hideModal(btn);
     });
 });
+
+function updateScore() {
+    const score = document.getElementById('score');
+    const scoreModal = document.querySelector('.modal__score');
+
+    scoreModal.innerText = score.innerText;
+}
