@@ -45,7 +45,7 @@ p {
 }
 
 .menu__tab {
-    background: #75a80e;
+    background: #ff9900;
     padding: 20px 50px;
     font-size: 18px;
     border-radius: 10px;
@@ -55,7 +55,7 @@ p {
 }
 
 .menu__tab:hover {
-    background: #08b402;
+    background: #ffaa00;
     transform: scale(1.07);
 }
 
