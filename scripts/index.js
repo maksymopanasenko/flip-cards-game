@@ -3,11 +3,19 @@ const tabs = document.querySelectorAll('.menu__tab');
 const modal = document.querySelector('.modal');
 const gameWindow = document.querySelector('.game'),
       menuWindow = document.querySelector('.menu');
+const scoreTableItems = document.querySelectorAll('.table__value');
 
 let cards = [];
+let arr = [];
 let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
+
+if (window.localStorage.getItem('score')) {
+    getFromStorage();
+    arr = [...JSON.parse(window.localStorage.getItem('score'))];
+}
+
 
 document.querySelector(".score").textContent = score;
 
@@ -180,4 +188,23 @@ function updateScore() {
     const scoreModal = document.querySelector('.modal__score');
 
     scoreModal.innerText = score.innerText;
+    arr.push(score.innerText);
+    window.localStorage.setItem('score', JSON.stringify(arr));
+    getFromStorage();
+}
+
+function getFromStorage() {
+    let records = window.localStorage.getItem('score');
+    records = JSON.parse(records);
+
+    if (scoreTableItems.length >= records.length) {
+        for (let i = 0; i < records.length; i++) {
+            records.forEach((item, n) => {
+                scoreTableItems[n].innerText = item;
+            });
+        }
+    } else {
+        arr = arr.slice(0, 5);
+        window.localStorage.setItem('score', JSON.stringify(arr));
+    }
 }
