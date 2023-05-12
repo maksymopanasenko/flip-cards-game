@@ -16,7 +16,6 @@ if (window.localStorage.getItem('score')) {
     arr = [...JSON.parse(window.localStorage.getItem('score'))];
 }
 
-
 document.querySelector(".score").textContent = score;
 
 function getData(n) {
@@ -188,8 +187,14 @@ function updateScore() {
     const scoreModal = document.querySelector('.modal__score');
 
     scoreModal.innerText = score.innerText;
+
     arr.push(score.innerText);
-    window.localStorage.setItem('score', JSON.stringify(arr));
+
+    if (scoreTableItems.length < arr.length) {
+        sortNumbers(arr).pop();
+    }
+
+    window.localStorage.setItem('score', JSON.stringify(sortNumbers(arr)));
     getFromStorage();
 }
 
@@ -197,14 +202,15 @@ function getFromStorage() {
     let records = window.localStorage.getItem('score');
     records = JSON.parse(records);
 
-    if (scoreTableItems.length >= records.length) {
-        for (let i = 0; i < records.length; i++) {
-            records.forEach((item, n) => {
-                scoreTableItems[n].innerText = item;
-            });
-        }
-    } else {
-        arr = arr.slice(0, 5);
-        window.localStorage.setItem('score', JSON.stringify(arr));
+    for (let i = 0; i < records.length; i++) {
+        records.forEach((item, n) => {
+            scoreTableItems[n].innerText = item;
+        });
     }
+}
+
+function sortNumbers(array) {
+    return array.sort(function(a, b) {
+        return a - b;
+    });
 }
