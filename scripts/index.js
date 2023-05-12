@@ -215,3 +215,40 @@ function sortNumbers(array) {
         return a - b;
     });
 }
+
+
+const mins = document.querySelector('.minutes'),
+      secs = document.querySelector('.seconds');
+
+
+
+function updateTime(time) {
+    let total = time;
+    let minutes, seconds;
+    
+    const setTime = setInterval(() => {
+        calcTime(total);
+        mins.innerText = getZero(minutes);
+        secs.innerText = getZero(seconds);
+        total -= 1;
+    }, 1000);
+
+    function calcTime(total) {
+        minutes = Math.floor(total / 60);
+        seconds = Math.floor(total % 60);
+
+        if (total <= 0) {
+            clearInterval(setTime);
+        }
+    }
+}
+
+function getZero(num) {
+    if (num >= 0 && num < 10) {
+        return `0${num}`;
+    } else {
+        return num;
+    }
+}
+
+updateTime(100);
