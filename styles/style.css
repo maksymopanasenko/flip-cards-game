@@ -1,7 +1,7 @@
 @import url('reset.css');
 
 body {
-    font-family: 'Coiny', cursive;
+    font-family: 'Coiny';
     min-height: 100vh;
     background-color: #12181f;
     color: white;
@@ -31,6 +31,20 @@ p {
     min-width: 180px;
 }
 
+.aside__btn {
+    background: #ff9900;
+    font-family: 'Coiny';
+    color: #ffffff;
+    text-shadow: 2px 2px 3px #000000fc;    
+    box-shadow: 3px 3px 7px rgb(0, 0, 0);
+    font-size: 18px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    transition: .3s ease-in-out;
+}
+
 .menu {
     text-align: center;
 }
@@ -53,14 +67,16 @@ p {
     padding: 20px 50px;
     font-size: 18px;
     border-radius: 10px;
+    text-shadow: 2px 2px 3px #000000fc; 
     box-shadow: 3px 3px 7px rgb(0, 0, 0);
     transition: .3s all;
     cursor: pointer;
     margin-bottom: 50px;
 }
 
-.menu__tab:hover {
-    background: #ffaa00;
+.menu__tab:hover,
+.aside__btn:hover {
+    background: #c93c12;
     transform: scale(1.07);
 }
 
@@ -143,8 +159,8 @@ p {
     border-radius: 8px;
     top: 0;
     left: 0;
-    height: 101%;
-    width: 101%;
+    height: 100.4%;
+    width: 100.4%;
 }
 
 .card .front {

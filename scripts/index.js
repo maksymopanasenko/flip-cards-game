@@ -18,6 +18,16 @@ if (window.localStorage.getItem('score')) {
 
 document.querySelector(".score").textContent = score;
 
+document.querySelectorAll('.modal__btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        hideModal(btn);
+    });
+});
+
+document.querySelector('.aside__btn').addEventListener('click', (e) => {
+    hideModal(e.target);
+})
+
 function getData(n) {
     fetch("./database/cards.json")
         .then((res) => res.json())
@@ -122,6 +132,7 @@ function setBoardSize() {
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             if (tab == tabs[0]) {
+                grid.classList.remove('grid-container_large');
                 getData(1);
                 menuWindow.style.display = 'none';
                 gameWindow.style.display = 'flex';
@@ -167,20 +178,10 @@ function hideModal(btn) {
         menuWindow.style.display = 'block';
         gameWindow.style.display = 'none';
         cards = [];
-        score = 0;
-        document.querySelector(".score").textContent = score;
-        gridContainer.innerHTML = '';
+        restart();
     }
     modal.style.display = 'none';
 }
-
-const closeBtns = document.querySelectorAll('.modal__btn');
-
-closeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        hideModal(btn);
-    });
-});
 
 function updateScore() {
     const score = document.getElementById('score');
