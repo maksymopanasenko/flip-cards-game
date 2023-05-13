@@ -167,6 +167,8 @@ function openModal() {
 
     if (counter == cards.length) {
         updateScore();
+        clearInterval(setTime);
+        toggleModalContent(0);
         setTimeout(showModal, 1000);
     }
 }
@@ -176,6 +178,13 @@ function showModal() {
 }
 
 function hideModal(btn) {
+    
+    clearInterval(setTime);
+    
+    if (btn.classList.contains('restart')) {
+        updateTime(100);
+    }
+
     if (btn.classList.contains('to-menu')) {
         menuWindow.style.display = 'block';
         gameWindow.style.display = 'none';
@@ -183,7 +192,6 @@ function hideModal(btn) {
         restart();
     }
     modal.style.display = 'none';
-    clearInterval(setTime);
 }
 
 function updateScore() {
@@ -225,7 +233,7 @@ const mins = document.querySelector('.minutes'),
 function updateTime(time) {
     let total = time;
     let minutes, seconds;
-    
+
     calcTime(total);
 
     setTime = setInterval(() => {
@@ -240,7 +248,9 @@ function updateTime(time) {
         secs.innerText = getZero(seconds);
 
         if (total <= 0) {
+            showModal();
             clearInterval(setTime);
+            toggleModalContent(1);
         }
     }
 }
@@ -251,4 +261,16 @@ function getZero(num) {
     } else {
         return num;
     }
+}
+
+function toggleModalContent(num) {
+    const modalContent = document.querySelectorAll('.modal__content');
+
+    modalContent.forEach((content, i) => {
+        if (i == num) {
+            content.classList.add('modal__content_active');
+        } else {
+            content.classList.remove('modal__content_active');
+        }
+    });
 }

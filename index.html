@@ -53,13 +53,21 @@
             </aside>
         </section>
         <div class="modal">
-          <div class="modal__content">
+          <div class="modal__content modal__content_active">
             <h2>Congratulations!</h2>
-            <p>You have scored <span class="modal__score">32</span> points</p>
+            <p>You have scored <span class="modal__score"></span> points</p>
             <div class="actions">
-              <button onclick="restart()" class="modal__btn">Restart</button>
+              <button onclick="restart()" class="modal__btn restart">Restart</button>
               <button class="modal__btn to-menu">Difficulty</button>
+            </div>
           </div>
+          <div class="modal__content">
+            <h2>Game over!</h2>
+            <p>The time is up. Unfortunately, you did not get the points</p>
+            <div class="actions">
+              <button onclick="restart()" class="modal__btn restart">Restart</button>
+              <button class="modal__btn to-menu">Difficulty</button>
+            </div>
           </div>
         </div>
     </main>

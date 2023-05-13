@@ -198,6 +198,12 @@ p {
     background: #1b225fd5;
     padding: 40px;
     border-radius: 10px;
+    max-width: 530px;
+    display: none;
+}
+
+.modal__content_active {
+    display: block;
 }
 
 .modal__score {
