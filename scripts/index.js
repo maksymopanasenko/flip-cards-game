@@ -7,6 +7,7 @@ const scoreTableItems = document.querySelectorAll('.table__value');
 
 let cards = [];
 let arr = [];
+let setTime;
 let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
@@ -39,6 +40,7 @@ function getData(n) {
 
             shuffleCards();
             generateCards();
+            updateTime(100);
         });
 }
 
@@ -181,6 +183,7 @@ function hideModal(btn) {
         restart();
     }
     modal.style.display = 'none';
+    clearInterval(setTime);
 }
 
 function updateScore() {
@@ -216,26 +219,25 @@ function sortNumbers(array) {
     });
 }
 
-
 const mins = document.querySelector('.minutes'),
       secs = document.querySelector('.seconds');
-
-
 
 function updateTime(time) {
     let total = time;
     let minutes, seconds;
     
-    const setTime = setInterval(() => {
-        calcTime(total);
-        mins.innerText = getZero(minutes);
-        secs.innerText = getZero(seconds);
+    calcTime(total);
+
+    setTime = setInterval(() => {
         total -= 1;
+        calcTime(total);
     }, 1000);
 
     function calcTime(total) {
         minutes = Math.floor(total / 60);
         seconds = Math.floor(total % 60);
+        mins.innerText = getZero(minutes);
+        secs.innerText = getZero(seconds);
 
         if (total <= 0) {
             clearInterval(setTime);
@@ -250,5 +252,3 @@ function getZero(num) {
         return num;
     }
 }
-
-updateTime(100);
