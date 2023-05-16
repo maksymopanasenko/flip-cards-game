@@ -274,3 +274,38 @@ function toggleModalContent(num) {
         }
     });
 }
+
+
+function changeSlide() {
+    const tables = document.querySelectorAll('.records__group');
+    const arrowLeft = document.querySelector('[data-arrow="left"]');
+    const arrowRight = document.querySelector('[data-arrow="right"]');
+    
+    let count = 0;
+
+    arrowLeft.addEventListener('click', () => {
+        count--;
+        setSlide();
+    });
+
+    arrowRight.addEventListener('click', () => {
+        count++;
+        setSlide();
+    });
+
+    function setSlide() {
+        tables.forEach(table => table.style.display = 'none');
+
+        if(count < 0) {
+            count = tables.length - 1;
+        }
+
+        if (count > tables.length -1) {
+            count = 0;
+        }
+
+        tables[count].style.display = 'block';
+    }
+}
+
+changeSlide();

@@ -60,6 +60,7 @@ p {
     width: 500px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 70px;
 }
 
 .menu__tab {
@@ -71,7 +72,6 @@ p {
     box-shadow: 3px 3px 7px rgb(0, 0, 0);
     transition: .3s all;
     cursor: pointer;
-    margin-bottom: 50px;
 }
 
 .menu__tab:hover,
@@ -81,13 +81,52 @@ p {
 }
 
 .records {
-    max-width: 250px;
+    width: 300px;
     margin: 0 auto;
+    position: relative;
+}
+
+.records__window {
+    overflow: hidden;
+}
+
+.records__wrapper {
+    width: calc(300px * 3);
+    display: flex;
+    justify-content: space-between;
+}
+
+.records__group {
+    width: 300px;
+}
+
+.records__arrow {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 20px;
+    right: -30px;
+    background: url('../images/fast-forward.png') center/cover no-repeat;
+}
+
+.records__arrow_left {
+    right: unset;
+    left: -30px;
+    background: url('../images/fast-forward-left.png') center/cover no-repeat;
 }
 
 .records__title {
     font-size: 30px;
     margin-bottom: 10px;
+    max-width: 200px;
+    margin: 0 auto;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.records__title span{
+    font-size: 20px;
+    color: #d6d1c9;
 }
 
 .table {
