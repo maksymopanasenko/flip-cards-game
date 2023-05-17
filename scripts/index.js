@@ -219,9 +219,14 @@ function updateScore() {
     }
 
     function defineStorage(storageKey, recordsArray, selector) {
+
+        if (window.localStorage.getItem(storageKey)) {
+            recordsArray = [...JSON.parse(window.localStorage.getItem(storageKey))];
+        }
+
         recordsArray.push(score.innerText);
 
-        if (scoreTableItemsEasy.length < recordsArray.length) {
+        if (selector.length < recordsArray.length) {
             sortNumbers(recordsArray).pop();
         }
 
