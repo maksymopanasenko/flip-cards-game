@@ -52,7 +52,7 @@ function getData(n) {
 
             shuffleCards();
             generateCards();
-            updateTime(100);
+            setTimeLimit();
         });
 }
 
@@ -152,11 +152,13 @@ function setBoardSize() {
                 gameWindow.style.display = 'flex';
             } else if (tab == tabs[1]) {
                 grid.classList.add('grid-container_large', 'middle');
+                grid.classList.remove('hard');
                 getData(3);
                 menuWindow.style.display = 'none';
                 gameWindow.style.display = 'flex';
             } else {
                 grid.classList.add('grid-container_large', 'hard');
+                grid.classList.remove('middle');
                 getData(5);
                 menuWindow.style.display = 'none';
                 gameWindow.style.display = 'flex';
@@ -192,7 +194,7 @@ function hideModal(btn) {
     clearInterval(setTime);
     
     if (btn.classList.contains('restart')) {
-        updateTime(100);
+        setTimeLimit();
     }
 
     if (btn.classList.contains('to-menu')) {
@@ -255,6 +257,16 @@ function sortNumbers(array) {
 
 const mins = document.querySelector('.minutes'),
       secs = document.querySelector('.seconds');
+
+function setTimeLimit() {
+    if (gridContainer.classList.contains('hard')) {
+        updateTime(160);
+    } else if (gridContainer.classList.contains('middle')) {
+        updateTime(110);
+    } else {
+        updateTime(60);
+    }
+}
 
 function updateTime(time) {
     let total = time;

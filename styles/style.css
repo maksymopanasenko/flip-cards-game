@@ -5,7 +5,7 @@ body {
     min-height: 100vh;
     background-color: #12181f;
     color: white;
-    padding: 20px 0 60px;
+    padding: 20px 0 50px;
 }
 
 h1 {
@@ -33,6 +33,11 @@ p {
 
 .aside {
     width: 220px;
+}
+
+.aside__body {
+    position: sticky;
+    top: 20px;
 }
 
 .aside__btn {
@@ -71,7 +76,8 @@ p {
     background: #ff9900;
     padding: 20px 50px;
     font-size: 18px;
-    border-radius: 10px;
+    border-radius: 10px;    
+    letter-spacing: 1px;
     text-shadow: 2px 2px 3px #000000fc; 
     box-shadow: 3px 3px 7px rgb(0, 0, 0);
     transition: .3s all;
@@ -79,7 +85,8 @@ p {
 }
 
 .menu__tab:hover,
-.aside__btn:hover {
+.aside__btn:hover,
+.modal__btn:hover {
     background: #c93c12;
     transform: scale(1.07);
 }
@@ -102,20 +109,23 @@ p {
 
 .records__group {
     width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #141b22;
 }
 
 .records__arrow {
     position: absolute;
     width: 30px;
     height: 30px;
-    top: 20px;
-    right: -30px;
+    top: 40px;
+    right: -40px;
     background: url('../images/fast-forward.png') center/cover no-repeat;
 }
 
 .records__arrow_left {
     right: unset;
-    left: -30px;
+    left: -40px;
     transform: rotate(-0.5turn);
 }
 
@@ -261,10 +271,7 @@ p {
     font-family: 'Coiny';
     padding: 8px 16px;
     background-color: #ff9900;
+    letter-spacing: 1px;
     color: rgb(0, 0, 0);
     text-shadow: 0px 0px 4px white, 0px 0px 4px white;
-}
-
-.modal__btn:hover {
-    background: #ffaa00;
 }
