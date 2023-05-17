@@ -3,19 +3,31 @@ const tabs = document.querySelectorAll('.menu__tab');
 const modal = document.querySelector('.modal');
 const gameWindow = document.querySelector('.game'),
       menuWindow = document.querySelector('.menu');
-const scoreTableItems = document.querySelectorAll('.table__value');
+const scoreTableItemsEasy = document.querySelectorAll('[data-level="easy"]'),
+      scoreTableItemsMiddle = document.querySelectorAll('[data-level="middle"]'),
+      scoreTableItemsHard = document.querySelectorAll('[data-level="hard"]');
 
 let cards = [];
-let arr = [];
+let arrayEasy = [],
+    arrayMiddle = [],
+    arrayHard = [];
 let setTime;
 let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
 
-if (window.localStorage.getItem('score')) {
-    getFromStorage();
-    arr = [...JSON.parse(window.localStorage.getItem('score'))];
+
+function defineLevelTable(storageKey, recordsArray, selector) {
+
+    if (window.localStorage.getItem(storageKey)) {
+        getFromStorage(storageKey, selector);
+        recordsArray = [...JSON.parse(window.localStorage.getItem(storageKey))];
+    }
 }
+
+defineLevelTable('scoreEasy', arrayEasy, scoreTableItemsEasy);
+defineLevelTable('scoreMiddle', arrayMiddle, scoreTableItemsMiddle);
+defineLevelTable('scoreHard', arrayHard, scoreTableItemsHard);
 
 document.querySelector(".score").textContent = score;
 
@@ -134,17 +146,17 @@ function setBoardSize() {
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             if (tab == tabs[0]) {
-                grid.classList.remove('grid-container_large');
+                grid.classList.remove('grid-container_large', 'middle', 'hard');
                 getData(1);
                 menuWindow.style.display = 'none';
                 gameWindow.style.display = 'flex';
             } else if (tab == tabs[1]) {
-                grid.classList.add('grid-container_large');
+                grid.classList.add('grid-container_large', 'middle');
                 getData(3);
                 menuWindow.style.display = 'none';
                 gameWindow.style.display = 'flex';
             } else {
-                grid.classList.add('grid-container_large');
+                grid.classList.add('grid-container_large', 'hard');
                 getData(5);
                 menuWindow.style.display = 'none';
                 gameWindow.style.display = 'flex';
@@ -152,8 +164,6 @@ function setBoardSize() {
         });
     });
 }
-
-setBoardSize();
 
 function openModal() {
     const renderedCards = document.querySelectorAll('.card');
@@ -200,23 +210,34 @@ function updateScore() {
 
     scoreModal.innerText = score.innerText;
 
-    arr.push(score.innerText);
-
-    if (scoreTableItems.length < arr.length) {
-        sortNumbers(arr).pop();
+    if (gridContainer.classList.contains('hard')) {
+        defineStorage('scoreHard', arrayHard, scoreTableItemsHard);
+    } else if (gridContainer.classList.contains('middle')) {
+        defineStorage('scoreMiddle', arrayMiddle, scoreTableItemsMiddle);
+    } else {
+        defineStorage('scoreEasy', arrayEasy, scoreTableItemsEasy);
     }
 
-    window.localStorage.setItem('score', JSON.stringify(sortNumbers(arr)));
-    getFromStorage();
+    function defineStorage(storageKey, recordsArray, selector) {
+        recordsArray.push(score.innerText);
+
+        if (scoreTableItemsEasy.length < recordsArray.length) {
+            sortNumbers(recordsArray).pop();
+        }
+
+        window.localStorage.setItem(storageKey, JSON.stringify(sortNumbers(recordsArray)));
+
+        getFromStorage(storageKey, selector);
+    }
 }
 
-function getFromStorage() {
-    let records = window.localStorage.getItem('score');
+function getFromStorage(key, selector) {
+    let records = window.localStorage.getItem(key);
     records = JSON.parse(records);
 
     for (let i = 0; i < records.length; i++) {
         records.forEach((item, n) => {
-            scoreTableItems[n].innerText = item;
+            selector[n].innerText = item;
         });
     }
 }
@@ -275,7 +296,6 @@ function toggleModalContent(num) {
     });
 }
 
-
 function changeSlide() {
     const tables = document.querySelectorAll('.records__group');
     const arrowLeft = document.querySelector('[data-arrow="left"]');
@@ -308,4 +328,5 @@ function changeSlide() {
     }
 }
 
+setBoardSize();
 changeSlide();

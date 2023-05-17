@@ -31,6 +31,10 @@ p {
     min-width: 180px;
 }
 
+.aside {
+    width: 220px;
+}
+
 .aside__btn {
     background: #ff9900;
     font-family: 'Coiny';
@@ -112,7 +116,7 @@ p {
 .records__arrow_left {
     right: unset;
     left: -30px;
-    background: url('../images/fast-forward-left.png') center/cover no-repeat;
+    transform: rotate(-0.5turn);
 }
 
 .records__title {
@@ -157,7 +161,7 @@ p {
     display: grid;
     justify-content: center;
     gap: 16px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 8vw);
     grid-auto-rows: 8vw;
 }
 
@@ -167,7 +171,7 @@ p {
     display: grid;
     justify-content: center;
     grid-gap: 16px;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 8vw);
     grid-auto-rows: 8vw;
 }
 

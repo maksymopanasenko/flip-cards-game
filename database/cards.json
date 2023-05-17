@@ -6,29 +6,5 @@
     {
         "image": "images/chili.png",
         "name": "chili"
-    },
-    {
-        "image": "images/grapes.png",
-        "name": "grapes"
-    },
-    {
-        "image": "images/lemon.png",
-        "name": "lemon"
-    },
-    {
-        "image": "images/pineapple.png",
-        "name": "pineapple"
-    },
-    {
-        "image": "images/strawberry.png",
-        "name": "strawberry"
-    },
-    {
-        "image": "images/tomato.png",
-        "name": "tomato"
-    },
-    {
-        "image": "images/watermelon.png",
-        "name": "watermelon"
     }
 ]
