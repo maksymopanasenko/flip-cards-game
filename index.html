@@ -12,6 +12,21 @@
   </head>
   <body>
     <main>
+      <section class="auth">
+        <div class="auth__body">
+          <h2 class="auth__title">Create player</h2>
+          <p class="auth__text">Enter required data below</p>
+          <form class="auth__form">
+            <div class="auth__fields">
+              <label for="login">Player</label>
+              <input type="text" class="auth__input" name="login" placeholder="Enter player name" id="login" required>
+              <label for="pass">Password</label>
+              <input type="password" class="auth__input" name="password" placeholder="Enter password" id="pass" required>
+            </div>
+            <button class="modal__btn auth__btn">Sign up</button>
+          </form>
+        </div>
+      </section>
         <section class="menu">
             <h2 class="menu__title">Choose the difficulty of the game</h2>
             <ul class="menu__list">

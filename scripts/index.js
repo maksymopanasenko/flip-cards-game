@@ -1,6 +1,7 @@
 const gridContainer = document.querySelector(".grid-container");
 const tabs = document.querySelectorAll('.menu__tab');
 const modal = document.querySelector('.modal');
+const auth = document.querySelector('.auth');
 const gameWindow = document.querySelector('.game'),
       menuWindow = document.querySelector('.menu');
 const scoreTableItemsEasy = document.querySelectorAll('[data-level="easy"]'),
@@ -344,6 +345,12 @@ function changeSlide() {
         tables[count].style.display = 'block';
     }
 }
+
+document.querySelector('.auth__form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    auth.style.display = 'none';
+    menuWindow.style.display = 'block';
+});
 
 setBoardSize();
 changeSlide();

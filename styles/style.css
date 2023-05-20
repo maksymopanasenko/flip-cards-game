@@ -5,7 +5,6 @@ body {
     min-height: 100vh;
     background-color: #12181f;
     color: white;
-    padding: 20px 0 50px;
 }
 
 h1 {
@@ -19,6 +18,58 @@ p {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
+}
+
+.auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.auth__body {
+    max-width: 400px;
+    background: #1b225fd5;
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.auth__title {
+    font-size: 32px;
+}
+
+.auth__text {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.auth__fields {
+    text-align: start;
+}
+
+.auth__form label{
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.auth__input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+}
+
+.auth__input:focus {
+    border: 2px solid rgb(255, 123, 0);
+}
+
+.auth__btn {
+    margin-top: 20px;
 }
 
 .game {
@@ -56,6 +107,7 @@ p {
 
 .menu {
     text-align: center;
+    display: none;
 }
 
 .menu__title {
@@ -89,6 +141,7 @@ p {
 .modal__btn:hover {
     background: #c93c12;
     transform: scale(1.07);
+    text-shadow: none;
 }
 
 .records {
@@ -267,11 +320,9 @@ p {
     border-radius: 10px;
     font-size: 18px;
     transition: .3s all;
-    font-weight: 700;
     font-family: 'Coiny';
     padding: 8px 16px;
     background-color: #ff9900;
     letter-spacing: 1px;
-    color: rgb(0, 0, 0);
-    text-shadow: 0px 0px 4px white, 0px 0px 4px white;
+    text-shadow: 2px 2px 3px #000000fc; 
 }
