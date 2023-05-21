@@ -62,6 +62,8 @@ p {
     outline: none;
     margin-bottom: 10px;
     border: 2px solid transparent;
+    font-size: 16px;
+    color: #152a41;
 }
 
 .auth__input:focus {

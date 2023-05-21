@@ -346,11 +346,64 @@ function changeSlide() {
     }
 }
 
-document.querySelector('.auth__form').addEventListener('submit', (e) => {
+const form = document.querySelector('.auth__form');
+const userLogin = document.getElementById('login');
+const userPassword = document.getElementById('pass');
+
+
+function isAuth() {
+    const user = window.localStorage.getItem('login');
+    if (user) {
+        const loginWindow = document.createElement('div');
+        loginWindow.classList.add('auth__body');
+        loginWindow.innerHTML = `
+            <h2 class="auth__title">Hello, ${user}</h2>
+            <p class="auth__text">Type your password below</p>
+            <form class="auth__form_log">
+                <div class="auth__fields">
+                    <input type="password" class="auth__input" name="password" placeholder="Enter password" id="pass-log" required>
+                </div>
+                <button class="modal__btn auth__btn">Log in</button>
+            </form>
+        `;
+
+        auth.innerHTML = '';
+        auth.insertAdjacentElement('beforeend', loginWindow);
+    }
+}
+
+function allowAccess() {
+    const password = document.getElementById('pass-log');
+    
+    if (password.value == window.localStorage.getItem('password')) {
+        auth.style.display = 'none';
+        menuWindow.style.display = 'block';
+    } else {
+        document.querySelector('.auth__form_log').reset();
+    }
+}
+
+auth.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    const target = e.target;
+
+    if (target && target.classList.contains('auth__form_log')) {
+        allowAccess();
+    }
+});
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    window.localStorage.setItem('login', userLogin.value);
+    window.localStorage.setItem('password', userPassword.value);
+
     auth.style.display = 'none';
     menuWindow.style.display = 'block';
 });
 
+
+isAuth();
 setBoardSize();
 changeSlide();
